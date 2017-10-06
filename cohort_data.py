@@ -14,8 +14,11 @@ def unique_houses(filename):
     set([])
 
     """
+
     hp_info = open(filename)
+
     all_houses = set()
+
     for line in hp_info:
         hp_info_rows = line.split("|")
         all_houses.add(hp_info_rows[2])
@@ -45,7 +48,26 @@ def sort_by_cohort(filename):
     fall_15 = []
     ghosts = []
 
-    # Code goes here
+    hp_info = open(filename)
+
+    for line in hp_info:
+        line = line.rstrip()
+        hp_info_rows = line.split("|")
+        cohort = hp_info_rows[4]
+        student_name = hp_info_rows[0] + ' ' + hp_info_rows[1]
+        
+        if cohort == 'G':
+            ghosts.append(student_name)
+        elif cohort == 'Winter 2016':
+            winter_16.append(student_name)
+        elif cohort == 'Spring 2016':
+            spring_16.append(student_name)
+        elif cohort == 'Summer 2016':
+            summer_16.append(student_name)
+        elif cohort == 'Fall 2015':
+            fall_15.append(student_name)
+
+    all_students.extend([fall_15,winter_16,spring_16,summer_16,ghosts])
 
     return all_students
 
